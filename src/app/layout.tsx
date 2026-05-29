@@ -1,53 +1,51 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, DM_Sans } from "next/font/google";
+import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 
-const dmSerif = DM_Serif_Display({
-  variable: "--font-dm-serif",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: "400",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Chafá Café & Studio | Where Wellness Meets Flavour",
+  title: "Cafe Coffee Treat | Great Food, Great Vibes, Great Prices",
   description:
-    "Gourmet, wholesome, tasty and healthy food made with love! Chafá is a health-focused café with an integrated fitness studio in Pune. Clean eating, great coffee, yoga, HIIT, and community events.",
+    "Cafe Coffee Treat (CCT) — Your favourite hangout spot near Wadia College, Pune. Budget-friendly pizza, pasta, burgers, coffee, shakes & more. Private seating, birthday celebrations, home delivery available.",
   keywords: [
-    "Chafa Cafe",
-    "Chafa Studio",
-    "Healthy Food Pune",
-    "Koregaon Park Cafe",
-    "Wanowrie Cafe",
-    "Bavdhan Cafe",
-    "Yoga Studio Pune",
-    "Healthy Cafe",
-    "Smoothie Bowl",
-    "Clean Eating",
-    "Wellness Cafe",
+    "Cafe Coffee Treat",
+    "CCT Cafe",
+    "Budget Cafe Pune",
+    "Wadia College Cafe",
+    "Pizza Pune",
+    "Burger Pune",
+    "Coffee Shop Pune",
+    "Student Cafe Pune",
+    "Bund Garden Road Cafe",
+    "Birthday Party Cafe Pune",
   ],
-  authors: [{ name: "Chafá Café & Studio" }],
+  authors: [{ name: "Cafe Coffee Treat" }],
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Chafá Café & Studio | Where Wellness Meets Flavour",
+    title: "Cafe Coffee Treat | Great Food, Great Vibes, Great Prices",
     description:
-      "Gourmet, wholesome, tasty and healthy food made with love! Health-focused café with fitness studio in Pune.",
+      "Your favourite hangout spot near Wadia College, Pune. Budget-friendly pizza, pasta, burgers, coffee, shakes & more.",
     type: "website",
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Chafá Café & Studio | Where Wellness Meets Flavour",
+    title: "Cafe Coffee Treat | Great Food, Great Vibes, Great Prices",
     description:
-      "Gourmet, wholesome, tasty and healthy food made with love! Health-focused café with fitness studio in Pune.",
+      "Your favourite hangout spot near Wadia College, Pune. Budget-friendly pizza, pasta, burgers, coffee, shakes & more.",
   },
 };
 
@@ -59,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${dmSerif.variable} ${dmSans.variable} antialiased bg-background text-foreground`}
+        className={`${outfit.variable} ${inter.variable} antialiased bg-background text-foreground`}
       >
         {children}
       </body>

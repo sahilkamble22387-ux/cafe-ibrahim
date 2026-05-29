@@ -1,27 +1,27 @@
 'use client';
 
-import ChafaNavbar from '@/components/ChafaNavbar';
-import ChafaHero from '@/components/ChafaHero';
-import ChafaAbout from '@/components/ChafaAbout';
-import ChafaSignatureDishes from '@/components/ChafaSignatureDishes';
-import ChafaStudio from '@/components/ChafaStudio';
-import ChafaLocations from '@/components/ChafaLocations';
-import ChafaContact from '@/components/ChafaContact';
-import ChafaFooter from '@/components/ChafaFooter';
+import CCTNavbar from '@/components/CCTNavbar';
+import CCTHero from '@/components/CCTHero';
+import CCTAbout from '@/components/CCTAbout';
+import CCTMenu from '@/components/CCTMenu';
+import CCTServices from '@/components/CCTServices';
+import CCTWhyWebsite from '@/components/CCTWhyWebsite';
+import CCTContact from '@/components/CCTContact';
+import CCTFooter from '@/components/CCTFooter';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-cream">
-      <ChafaNavbar />
+    <div className="min-h-screen flex flex-col bg-warm-cream">
+      <CCTNavbar />
       <main className="flex-1">
-        <ChafaHero />
-        <ChafaAbout />
-        <ChafaSignatureDishes />
-        <ChafaStudio />
-        <ChafaLocations />
-        <ChafaContact />
+        <CCTHero />
+        <CCTAbout />
+        <CCTMenu />
+        <CCTServices />
+        <CCTWhyWebsite />
+        <CCTContact />
       </main>
-      <ChafaFooter />
+      <CCTFooter />
     </div>
   );
 }
