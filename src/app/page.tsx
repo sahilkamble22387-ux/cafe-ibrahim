@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import {
-  PawPrint,
   Coffee,
   Heart,
   MapPin,
@@ -14,92 +13,84 @@ import {
   Menu,
   X,
   Star,
-  Shield,
-  Scissors,
-  ShoppingBag,
-  Home as HomeIcon,
+  Flame,
+  Moon,
+  Sun,
+  Utensils,
+  Sandwich,
+  Egg,
+  Soup,
+  Bike,
+  Users,
+  ExternalLink,
   ArrowRight,
   Sparkles,
-  Dog,
-  Cat,
-  Utensils,
-  Cake,
-  GlassWater,
-  Pizza,
-  Sandwich,
   Cookie,
-  Baby,
-  Users,
-  Mail,
-  ExternalLink,
 } from "lucide-react";
 
-/* ─── Paw Print SVG Component ─── */
-function PawSVG({ className = "", size = 24 }: { className?: string; size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      className={className}
-    >
-      <ellipse cx="9" cy="4.5" rx="2.5" ry="3" />
-      <ellipse cx="15" cy="4.5" rx="2.5" ry="3" />
-      <ellipse cx="5" cy="10" rx="2" ry="2.5" />
-      <ellipse cx="19" cy="10" rx="2" ry="2.5" />
-      <ellipse cx="12" cy="15" rx="5" ry="4.5" />
-    </svg>
-  );
-}
-
-/* ─── Dog Silhouette SVG ─── */
-function DogSVG({ className = "", size = 60 }: { className?: string; size?: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 100 100"
-      fill="currentColor"
-      className={className}
-    >
-      <path d="M25 30 C20 20, 15 15, 20 10 C25 5, 30 15, 35 20 C40 15, 45 12, 55 12 C65 12, 72 18, 75 25 C80 18, 85 10, 88 15 C92 20, 85 28, 80 32 C85 38, 88 48, 85 58 C82 68, 75 75, 70 80 L68 90 C67 95, 62 98, 58 95 L55 85 C50 87, 45 87, 40 85 L37 95 C35 98, 30 97, 28 93 L27 82 C22 78, 18 72, 17 62 C16 52, 18 40, 25 30Z" />
-    </svg>
-  );
-}
-
-/* ─── Floating Paw Particles ─── */
-function FloatingPaws() {
-  const paws = [
-    { left: "8%", bottom: "20%", delay: 0, size: 28, class: "paw-float-1" },
-    { left: "25%", bottom: "15%", delay: 1.2, size: 22, class: "paw-float-2" },
-    { left: "45%", bottom: "25%", delay: 2.5, size: 32, class: "paw-float-3" },
-    { left: "65%", bottom: "10%", delay: 0.8, size: 24, class: "paw-float-4" },
-    { left: "82%", bottom: "18%", delay: 1.8, size: 20, class: "paw-float-5" },
-    { left: "55%", bottom: "30%", delay: 3, size: 18, class: "paw-float-1" },
-    { left: "15%", bottom: "35%", delay: 2, size: 26, class: "paw-float-3" },
+/* ─── Steam Particles for Hero ─── */
+function FloatingSteam() {
+  const steamItems = [
+    { left: "10%", bottom: "20%", delay: 0, class: "steam-1" },
+    { left: "30%", bottom: "15%", delay: 1, class: "steam-2" },
+    { left: "50%", bottom: "25%", delay: 2, class: "steam-3" },
+    { left: "70%", bottom: "10%", delay: 0.5, class: "steam-4" },
+    { left: "85%", bottom: "18%", delay: 1.5, class: "steam-5" },
+    { left: "20%", bottom: "30%", delay: 2.5, class: "steam-6" },
   ];
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {paws.map((paw, i) => (
+      {steamItems.map((item, i) => (
         <div
           key={i}
-          className={`absolute ${paw.class}`}
+          className={`absolute ${item.class}`}
           style={{
-            left: paw.left,
-            bottom: paw.bottom,
-            animationDelay: `${paw.delay}s`,
+            left: item.left,
+            bottom: item.bottom,
+            animationDelay: `${item.delay}s`,
           }}
         >
-          <PawSVG size={paw.size} className="text-paw-gold/20" />
+          <div className="w-3 h-3 rounded-full bg-gold/20 blur-sm" />
         </div>
       ))}
     </div>
   );
 }
 
-/* ─── Section Wrapper with Reveal ─── */
+/* ─── Spice Particles ─── */
+function FloatingSpices() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div
+        className="absolute spice-float-1 text-gold/10 text-2xl"
+        style={{ left: "15%", bottom: "10%" }}
+      >
+        ✦
+      </div>
+      <div
+        className="absolute spice-float-2 text-spice/10 text-xl"
+        style={{ left: "45%", bottom: "20%" }}
+      >
+        ✦
+      </div>
+      <div
+        className="absolute spice-float-3 text-gold/10 text-lg"
+        style={{ left: "75%", bottom: "15%" }}
+      >
+        ✦
+      </div>
+      <div
+        className="absolute spice-float-4 text-maroon/8 text-2xl"
+        style={{ left: "60%", bottom: "25%" }}
+      >
+        ✦
+      </div>
+    </div>
+  );
+}
+
+/* ─── Section Reveal Wrapper ─── */
 function RevealSection({
   children,
   className = "",
@@ -143,7 +134,7 @@ function AnimatedCounter({
   useEffect(() => {
     if (!isInView) return;
     let current = 0;
-    const increment = target / 60;
+    const increment = target / 50;
     const timer = setInterval(() => {
       current += increment;
       if (current >= target) {
@@ -152,7 +143,7 @@ function AnimatedCounter({
       } else {
         setCount(Math.floor(current));
       }
-    }, 25);
+    }, 30);
     return () => clearInterval(timer);
   }, [isInView, target]);
 
@@ -162,6 +153,17 @@ function AnimatedCounter({
       {count}
       {suffix}
     </span>
+  );
+}
+
+/* ─── Ornamental Divider (Arabesque inspired) ─── */
+function ArabesqueDivider() {
+  return (
+    <div className="flex items-center justify-center gap-3 mb-4">
+      <div className="section-separator" />
+      <div className="text-gold text-lg">✦</div>
+      <div className="section-separator" />
+    </div>
   );
 }
 
@@ -180,8 +182,7 @@ function Navbar() {
     { label: "Home", href: "#home" },
     { label: "Our Story", href: "#story" },
     { label: "Menu", href: "#menu" },
-    { label: "Services", href: "#services" },
-    { label: "Adopt", href: "#adopt" },
+    { label: "Late Night", href: "#latenight" },
     { label: "Visit Us", href: "#visit" },
   ];
 
@@ -192,26 +193,23 @@ function Navbar() {
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-warm-cream/95 backdrop-blur-md shadow-lg shadow-bark/5"
+          ? "bg-cream/95 backdrop-blur-md shadow-lg shadow-espresso/5"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 group">
-            <motion.div
-              whileHover={{ rotate: [0, -10, 10, 0] }}
-              transition={{ duration: 0.5 }}
-            >
-              <PawSVG size={28} className="text-terra" />
+          <a href="#home" className="flex items-center gap-2.5 group">
+            <motion.div whileHover={{ rotate: [0, -5, 5, 0] }} transition={{ duration: 0.5 }}>
+              <Coffee size={26} className="text-gold" />
             </motion.div>
             <div className="flex flex-col">
-              <span className="font-display text-lg sm:text-xl font-bold text-bark leading-tight">
-                The Pet Cafe
+              <span className="font-display text-xl sm:text-2xl font-bold text-espresso leading-tight">
+                Cafe Ibrahim
               </span>
-              <span className="text-[10px] sm:text-xs text-terra tracking-[0.2em] font-semibold uppercase">
-                Pune
+              <span className="text-[10px] tracking-[0.25em] font-body font-semibold text-maroon uppercase">
+                Est. Viman Nagar
               </span>
             </div>
           </a>
@@ -222,23 +220,23 @@ function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-body font-semibold text-bark/70 hover:text-terra transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-terra after:transition-all after:duration-300 hover:after:w-full"
+                className="text-sm font-body font-semibold text-espresso/70 hover:text-maroon transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-maroon after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </a>
             ))}
             <a
-              href="tel:9595224965"
-              className="bg-terra hover:bg-terra-dark text-soft-white px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-terra/20"
+              href="tel:8551061614"
+              className="bg-maroon hover:bg-maroon-dark text-warm-white px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-md hover:shadow-lg hover:shadow-maroon/20"
             >
-              Book a Visit
+              Order Now
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-bark"
+            className="md:hidden p-2 text-espresso"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -252,7 +250,7 @@ function Navbar() {
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
-          className="md:hidden bg-warm-cream/98 backdrop-blur-lg border-t border-peach"
+          className="md:hidden bg-cream/98 backdrop-blur-lg border-t border-sand"
         >
           <div className="px-6 py-4 space-y-3">
             {links.map((link) => (
@@ -260,16 +258,16 @@ function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-2 text-bark/80 hover:text-terra font-semibold transition-colors"
+                className="block py-2 text-espresso/80 hover:text-maroon font-semibold transition-colors font-body"
               >
                 {link.label}
               </a>
             ))}
             <a
-              href="tel:9595224965"
-              className="block text-center bg-terra text-soft-white py-3 rounded-full font-bold mt-2"
+              href="tel:8551061614"
+              className="block text-center bg-maroon text-warm-white py-3 rounded-full font-bold mt-2 font-body"
             >
-              Book a Visit
+              Order Now
             </a>
           </div>
         </motion.div>
@@ -285,38 +283,36 @@ function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
-    >
-      {/* Background Image with Parallax */}
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background */}
       <motion.div className="absolute inset-0" style={{ y }}>
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/petcafe/hero.png')" }}
+          style={{ backgroundImage: "url('/images/ibrahim/hero.png')" }}
         />
-        <div className="hero-gradient-pet absolute inset-0" />
+        <div className="hero-gradient-ibrahim absolute inset-0" />
       </motion.div>
 
-      {/* Floating Paws */}
-      <FloatingPaws />
+      <FloatingSteam />
+      <FloatingSpices />
 
       {/* Content */}
       <motion.div
         style={{ opacity }}
         className="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto"
       >
-        {/* Paw Print Badge */}
+        {/* 24 Hours Badge */}
         <motion.div
           initial={{ scale: 0, rotate: -180 }}
           animate={{ scale: 1, rotate: 0 }}
           transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-          className="inline-flex items-center gap-2 bg-soft-white/15 backdrop-blur-sm border border-soft-white/20 rounded-full px-5 py-2 mb-6"
+          className="inline-flex items-center gap-2 bg-warm-white/15 backdrop-blur-sm border border-gold/30 rounded-full px-5 py-2 mb-6 hour-glow"
         >
-          <PawSVG size={16} className="text-paw-gold" />
-          <span className="text-soft-white/90 text-sm font-body font-semibold tracking-wide">
-            Pune&apos;s First Cage-Free Pet Cafe
+          <Moon size={14} className="text-gold-light" />
+          <span className="text-warm-white/90 text-sm font-body font-bold tracking-wide">
+            Open 24 Hours
           </span>
+          <Sun size={14} className="text-gold-light" />
         </motion.div>
 
         {/* Main Heading */}
@@ -324,25 +320,35 @@ function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-soft-white text-shadow-warm leading-[1.1] mb-4"
+          className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-warm-white text-shadow-warm leading-[1.1] mb-4"
         >
-          A Pet Cafe
-          <br />
-          <span className="text-paw-gold">That&apos;s Human</span>
-          <br />
-          Friendly
+          Cafe Ibrahim
         </motion.h1>
 
-        {/* Subtitle */}
+        {/* Arabic-style subtitle */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="flex items-center justify-center gap-4 mb-4"
+        >
+          <div className="w-12 h-[1px] bg-gold/50" />
+          <span className="font-display text-xl sm:text-2xl text-gold tracking-wider">
+            ✦ AUTHENTIC ✦ IRANI ✦ CAFE ✦
+          </span>
+          <div className="w-12 h-[1px] bg-gold/50" />
+        </motion.div>
+
+        {/* Description */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="font-body text-lg sm:text-xl text-soft-white/80 max-w-2xl mx-auto mb-8 leading-relaxed"
+          transition={{ duration: 0.8, delay: 0.7 }}
+          className="font-body text-lg sm:text-xl text-warm-white/75 max-w-2xl mx-auto mb-8 leading-relaxed"
         >
-          Where your furry friends roam free while you sip artisan coffee.
+          Where the aroma of Irani chai meets the warmth of freshly baked bun maska.
           <br className="hidden sm:block" />
-          Cage-free. Leash-free. Full of love.
+          Late night cravings? We never close.
         </motion.p>
 
         {/* CTAs */}
@@ -354,17 +360,17 @@ function Hero() {
         >
           <a
             href="#menu"
-            className="bg-terra hover:bg-terra-dark text-soft-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-terra/30 pulse-glow-warm flex items-center gap-2"
+            className="bg-maroon hover:bg-maroon-dark text-warm-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 shadow-xl hover:shadow-2xl hover:shadow-maroon/30 pulse-glow-maroon flex items-center gap-2 font-body"
           >
             <Utensils size={20} />
             Explore Menu
           </a>
           <a
-            href="#adopt"
-            className="bg-soft-white/15 hover:bg-soft-white/25 backdrop-blur-sm border border-soft-white/30 text-soft-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-2"
+            href="tel:8551061614"
+            className="bg-warm-white/15 hover:bg-warm-white/25 backdrop-blur-sm border border-warm-white/30 text-warm-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 flex items-center gap-2 font-body"
           >
-            <Heart size={20} className="text-coral-light" />
-            Adopt a Friend
+            <Phone size={20} className="text-gold-light" />
+            Call to Order
           </a>
         </motion.div>
 
@@ -376,15 +382,16 @@ function Hero() {
           className="mt-12 flex justify-center gap-8 sm:gap-12"
         >
           {[
-            { value: "783+", label: "Adoptions" },
-            { value: "12K+", label: "Instagram Family" },
-            { value: "4.2★", label: "Google Rating" },
+            { value: "24", suffix: " Hrs", label: "Always Open" },
+            { value: "₹200", suffix: "", label: "For Two" },
+            { value: "4.6", suffix: "★", label: "JustDial" },
           ].map((stat, i) => (
             <div key={i} className="text-center">
-              <div className="font-display text-2xl sm:text-3xl font-bold text-paw-gold">
+              <div className="font-display text-2xl sm:text-3xl font-bold text-gold">
                 {stat.value}
+                {stat.suffix}
               </div>
-              <div className="font-body text-xs sm:text-sm text-soft-white/60 mt-1">
+              <div className="font-body text-xs sm:text-sm text-warm-white/50 mt-1">
                 {stat.label}
               </div>
             </div>
@@ -399,7 +406,7 @@ function Hero() {
         transition={{ delay: 1.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator"
       >
-        <ChevronDown size={28} className="text-soft-white/50" />
+        <ChevronDown size={28} className="text-warm-white/40" />
       </motion.div>
     </section>
   );
@@ -408,14 +415,11 @@ function Hero() {
 /* ─── Our Story Section ─── */
 function OurStory() {
   return (
-    <RevealSection
-      id="story"
-      className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 section-gradient-cream relative"
-    >
-      <div className="paw-pattern absolute inset-0 pointer-events-none" />
+    <RevealSection id="story" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 section-gradient-cream relative">
+      <div className="mosaic-pattern absolute inset-0 pointer-events-none" />
       <div className="max-w-7xl mx-auto relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left: Image Grid */}
+          {/* Left: Images */}
           <div className="relative">
             <div className="grid grid-cols-2 gap-4">
               <motion.div
@@ -423,86 +427,72 @@ function OurStory() {
                 className="rounded-2xl overflow-hidden shadow-xl row-span-2"
               >
                 <img
-                  src="/images/petcafe/pets.png"
-                  alt="Adorable pets at The Pet Cafe"
+                  src="/images/ibrahim/irani-chai.png"
+                  alt="Irani Chai at Cafe Ibrahim"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                className="rounded-2xl overflow-hidden shadow-lg"
-              >
+              <motion.div whileHover={{ scale: 1.03 }} className="rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src="/images/petcafe/coffee.png"
-                  alt="Artisan coffee at The Pet Cafe"
+                  src="/images/ibrahim/shawarma.png"
+                  alt="Chicken Shawarma at Cafe Ibrahim"
                   className="w-full h-48 object-cover"
                 />
               </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                className="rounded-2xl overflow-hidden shadow-lg"
-              >
+              <motion.div whileHover={{ scale: 1.03 }} className="rounded-2xl overflow-hidden shadow-lg">
                 <img
-                  src="/images/petcafe/outdoor.png"
-                  alt="Outdoor seating at The Pet Cafe"
+                  src="/images/ibrahim/exterior.png"
+                  alt="Cafe Ibrahim Exterior"
                   className="w-full h-48 object-cover"
                 />
               </motion.div>
             </div>
-            {/* Floating Paw */}
-            <div className="absolute -top-6 -right-6 bg-terra rounded-2xl p-4 shadow-xl hidden lg:block">
-              <PawSVG size={36} className="text-soft-white" />
-            </div>
+            {/* Decorative accent */}
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 border-2 border-gold/20 rounded-2xl -z-10" />
+            <div className="absolute -top-4 -left-4 w-16 h-16 border-2 border-maroon/15 rounded-xl -z-10" />
           </div>
 
-          {/* Right: Story Content */}
+          {/* Right: Story */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="section-separator" />
-              <span className="font-body text-sm font-bold text-terra tracking-[0.15em] uppercase">
+            <ArabesqueDivider />
+            <div className="text-center sm:text-left mb-2">
+              <span className="font-body text-sm font-bold text-maroon tracking-[0.15em] uppercase">
                 Our Story
               </span>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-bark mb-6 leading-tight">
-              Where Every Tail
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-espresso mb-6 leading-tight text-center sm:text-left">
+              Where Every Cup
               <br />
-              <span className="text-terra">Wags with Joy</span>
+              <span className="text-maroon">Tells a Story</span>
             </h2>
-            <p className="font-body text-bark/70 text-lg leading-relaxed mb-6">
-              Founded by <strong className="text-bark">Devesh Baheti</strong>, The Pet Cafe
-              Pune was born from a simple belief — that our four-legged friends
-              deserve a space where they can be themselves. Not caged. Not
-              leashed. Just free.
+            <p className="font-body text-espresso/65 text-lg leading-relaxed mb-6">
+              Nestled in the heart of Viman Nagar, <strong className="text-espresso">Cafe Ibrahim</strong> is
+              more than just a cafe — it&apos;s a late-night haven for those who believe that great food
+              shouldn&apos;t have a curfew. Inspired by the timeless Irani cafe tradition, we serve
+              authentic flavors that have been loved for generations.
             </p>
-            <p className="font-body text-bark/70 text-lg leading-relaxed mb-8">
-              Tucked away in the leafy lanes of Koregaon Park, we created a
-              space where pets roam freely while their humans enjoy artisan
-              coffee and gourmet food. With <strong className="text-terra">783+ successful
-              adoptions</strong>, we&apos;re not just a cafe — we&apos;re a movement.
+            <p className="font-body text-espresso/65 text-lg leading-relaxed mb-8">
+              From the first sip of our legendary <strong className="text-maroon">Irani Chai</strong> to the
+              last bite of our perfectly spiced <strong className="text-maroon">Chicken Shawarma</strong>, every
+              dish at Cafe Ibrahim is made with love, fresh ingredients, and recipes that honor the
+              Irani cafe heritage.
             </p>
 
             {/* Key Values */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: Shield, label: "Cage-Free", desc: "Safe open space" },
-                { icon: Heart, label: "783+ Adoptions", desc: "Rescue first" },
-                { icon: Coffee, label: "Artisan Menu", desc: "Humans & pets" },
-                { icon: Sparkles, label: "Leash-Free", desc: "Freedom to play" },
+                { icon: Moon, label: "Open 24 Hours", desc: "Always here for you" },
+                { icon: Flame, label: "Authentic Flavors", desc: "Irani cafe heritage" },
+                { icon: Heart, label: "Made with Love", desc: "Fresh ingredients daily" },
+                { icon: Star, label: "4.6★ Rated", desc: "Loved by Punekars" },
               ].map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 p-3 rounded-xl bg-soft-white/60"
-                >
-                  <div className="p-2 rounded-lg bg-terra/10 shrink-0">
-                    <item.icon size={18} className="text-terra" />
+                <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-warm-white/60">
+                  <div className="p-2 rounded-lg bg-maroon/10 shrink-0">
+                    <item.icon size={18} className="text-maroon" />
                   </div>
                   <div>
-                    <div className="font-body font-bold text-bark text-sm">
-                      {item.label}
-                    </div>
-                    <div className="font-body text-xs text-bark/50">
-                      {item.desc}
-                    </div>
+                    <div className="font-body font-bold text-espresso text-sm">{item.label}</div>
+                    <div className="font-body text-xs text-espresso/45">{item.desc}</div>
                   </div>
                 </div>
               ))}
@@ -516,124 +506,188 @@ function OurStory() {
 
 /* ─── Menu Section ─── */
 function MenuSection() {
-  const [activeTab, setActiveTab] = useState<"humans" | "pets">("humans");
+  const [activeTab, setActiveTab] = useState<
+    "breakfast" | "mains" | "shawarma" | "beverages"
+  >("breakfast");
 
-  const humanMenu = [
-    {
-      name: "Artisan Cappuccino",
-      desc: "Rich, velvety espresso with steamed milk foam",
-      price: "₹220",
-      img: "/images/petcafe/coffee.png",
-      tag: "Bestseller",
+  const menuData = {
+    breakfast: {
+      title: "All Day Breakfast",
+      icon: Egg,
+      items: [
+        {
+          name: "Bun Maska Jam",
+          desc: "Soft pav with butter & jam — the Irani classic",
+          price: "₹80",
+          img: "/images/ibrahim/bun-maska.png",
+          tag: "Must Try",
+        },
+        {
+          name: "Masala Omelette",
+          desc: "Fluffy eggs with green chilies, onions & spices",
+          price: "₹90",
+          img: "/images/ibrahim/omelette.png",
+          tag: "Popular",
+        },
+        {
+          name: "Chicken Keema Paratha",
+          desc: "Spiced minced chicken with flaky alishan paratha",
+          price: "₹150",
+          img: "/images/ibrahim/kheema.png",
+          tag: "Bestseller",
+        },
+        {
+          name: "Cheese Omelette",
+          desc: "Golden omelette loaded with melted cheese",
+          price: "₹110",
+          img: "/images/ibrahim/omelette.png",
+          tag: "",
+        },
+      ],
     },
-    {
-      name: "Truffle Pasta",
-      desc: "Creamy penne in truffle oil with parmesan",
-      price: "₹320",
-      img: "/images/petcafe/pasta.png",
-      tag: "Chef's Special",
+    mains: {
+      title: "Mains & More",
+      icon: Soup,
+      items: [
+        {
+          name: "Chicken Biryani",
+          desc: "Aromatic basmati rice with tender chicken & saffron",
+          price: "₹180",
+          img: "/images/ibrahim/biryani.png",
+          tag: "Bestseller",
+        },
+        {
+          name: "Chicken Kheema Pav",
+          desc: "Spiced minced chicken served with soft pav",
+          price: "₹140",
+          img: "/images/ibrahim/kheema.png",
+          tag: "Must Try",
+        },
+        {
+          name: "Masala Maggi",
+          desc: "Spiced noodles — the ultimate comfort food",
+          price: "₹65",
+          img: "/images/ibrahim/maggi.png",
+          tag: "Comfort",
+        },
+        {
+          name: "Jumbo Crunchy Burger",
+          desc: "Crispy patty with fresh veggies in a jumbo bun",
+          price: "₹130",
+          img: "/images/ibrahim/burger.png",
+          tag: "Popular",
+        },
+      ],
     },
-    {
-      name: "Gourmet Burger",
-      desc: "Juicy patty with fresh lettuce, tomato & secret sauce",
-      price: "₹280",
-      img: "/images/petcafe/burger.png",
-      tag: "Popular",
+    shawarma: {
+      title: "Shawarma & Rolls",
+      icon: Sandwich,
+      items: [
+        {
+          name: "Classic Chicken Shawarma",
+          desc: "Tender chicken in pita with garlic sauce & veggies",
+          price: "₹120",
+          img: "/images/ibrahim/shawarma.png",
+          tag: "Bestseller",
+        },
+        {
+          name: "Peri Peri Shawarma",
+          desc: "Spicy peri peri chicken shawarma with special sauce",
+          price: "₹140",
+          img: "/images/ibrahim/shawarma.png",
+          tag: "Spicy",
+        },
+        {
+          name: "Cheese Shawarma",
+          desc: "Classic shawarma loaded with melted cheese",
+          price: "₹150",
+          img: "/images/ibrahim/shawarma.png",
+          tag: "Cheesy",
+        },
+        {
+          name: "Shawarma Roll",
+          desc: "Chicken shawarma wrapped in a roomali roti",
+          price: "₹100",
+          img: "/images/ibrahim/shawarma.png",
+          tag: "Value",
+        },
+      ],
     },
-    {
-      name: "Wood-Fired Pizza",
-      desc: "Hand-tossed pizza with fresh mozzarella & basil",
-      price: "₹350",
-      img: "/images/petcafe/pizza.png",
-      tag: "",
+    beverages: {
+      title: "Chai & Beverages",
+      icon: Coffee,
+      items: [
+        {
+          name: "Irani Chai",
+          desc: "Rich, creamy, slow-brewed — the legendary cup",
+          price: "₹40",
+          img: "/images/ibrahim/irani-chai.png",
+          tag: "Legendary",
+        },
+        {
+          name: "Masala Chai",
+          desc: "Spiced tea with cardamom, ginger & cloves",
+          price: "₹40",
+          img: "/images/ibrahim/irani-chai.png",
+          tag: "Classic",
+        },
+        {
+          name: "Cold Coffee",
+          desc: "Chilled blended coffee — perfect for Pune summers",
+          price: "₹90",
+          img: "/images/ibrahim/irani-chai.png",
+          tag: "",
+        },
+        {
+          name: "Cookie & Chai Combo",
+          desc: "Fresh-baked cookie paired with Irani chai",
+          price: "₹80",
+          img: "/images/ibrahim/bun-maska.png",
+          tag: "Combo",
+        },
+      ],
     },
-  ];
+  };
 
-  const petMenu = [
-    {
-      name: "Pupcakes",
-      desc: "Handmade dog cupcakes with peanut butter frosting",
-      price: "₹120",
-      img: "/images/petcafe/pupcakes.png",
-      tag: "Dog Favourite",
-    },
-    {
-      name: "Peanut Cookies",
-      desc: "All-natural peanut butter treats, no sugar added",
-      price: "₹100",
-      img: "/images/petcafe/pet-treats.png",
-      tag: "Healthy",
-    },
-    {
-      name: "Chicken & Egg Meal",
-      desc: "Fresh chicken breast with scrambled egg & rice",
-      price: "₹180",
-      img: "/images/petcafe/pets.png",
-      tag: "Fresh Meal",
-    },
-    {
-      name: "Pupsicles",
-      desc: "Frozen yogurt treats for a hot Pune afternoon",
-      price: "₹90",
-      img: "/images/petcafe/pupcakes.png",
-      tag: "Summer Special",
-    },
-  ];
-
-  const items = activeTab === "humans" ? humanMenu : petMenu;
+  const currentMenu = menuData[activeTab];
 
   return (
-    <RevealSection
-      id="menu"
-      className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-soft-white relative"
-    >
+    <RevealSection id="menu" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-warm-white relative">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="section-separator" />
-            <span className="font-body text-sm font-bold text-terra tracking-[0.15em] uppercase">
-              Our Menu
-            </span>
-            <div className="section-separator" />
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-bark mb-4">
-            Made with Love,{" "}
-            <span className="text-terra">
-              For Both of You
-            </span>
+          <ArabesqueDivider />
+          <span className="font-body text-sm font-bold text-maroon tracking-[0.15em] uppercase">
+            Our Menu
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-espresso mt-2 mb-4">
+            Flavors That <span className="text-maroon">Never Sleep</span>
           </h2>
-          <p className="font-body text-bark/60 text-lg max-w-2xl mx-auto">
-            From artisan coffee to special pet meals — we&apos;ve got something
-            for every member of your family.
+          <p className="font-body text-espresso/55 text-lg max-w-2xl mx-auto">
+            From sunrise chai to midnight shawarma — our kitchen never stops.
           </p>
         </div>
 
         {/* Tab Switcher */}
         <div className="flex justify-center mb-10">
-          <div className="bg-peach/60 rounded-full p-1.5 flex gap-1">
-            <button
-              onClick={() => setActiveTab("humans")}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-body font-bold text-sm transition-all duration-300 ${
-                activeTab === "humans"
-                  ? "bg-terra text-soft-white shadow-lg shadow-terra/20"
-                  : "text-bark/60 hover:text-bark"
-              }`}
-            >
-              <Users size={16} />
-              For Humans
-            </button>
-            <button
-              onClick={() => setActiveTab("pets")}
-              className={`flex items-center gap-2 px-6 py-3 rounded-full font-body font-bold text-sm transition-all duration-300 ${
-                activeTab === "pets"
-                  ? "bg-sage text-soft-white shadow-lg shadow-sage/20"
-                  : "text-bark/60 hover:text-bark"
-              }`}
-            >
-              <PawPrint size={16} />
-              For Pets
-            </button>
+          <div className="bg-sand/50 rounded-full p-1.5 flex flex-wrap justify-center gap-1">
+            {(
+              Object.entries(menuData) as [keyof typeof menuData, (typeof menuData)["breakfast"]][]
+            ).map(([key, data]) => (
+              <button
+                key={key}
+                onClick={() => setActiveTab(key)}
+                className={`flex items-center gap-2 px-4 sm:px-6 py-2.5 rounded-full font-body font-bold text-xs sm:text-sm transition-all duration-300 ${
+                  activeTab === key
+                    ? "bg-maroon text-warm-white shadow-lg shadow-maroon/20"
+                    : "text-espresso/60 hover:text-espresso"
+                }`}
+              >
+                <data.icon size={15} />
+                <span className="hidden sm:inline">{data.title}</span>
+                <span className="sm:hidden">{data.title.split(" ")[0]}</span>
+              </button>
+            ))}
           </div>
         </div>
 
@@ -645,7 +699,7 @@ function MenuSection() {
           transition={{ duration: 0.4 }}
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
-          {items.map((item, i) => (
+          {currentMenu.items.map((item, i) => (
             <motion.div
               key={item.name}
               initial={{ opacity: 0, y: 20 }}
@@ -660,47 +714,42 @@ function MenuSection() {
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 {item.tag && (
-                  <div
-                    className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-bold ${
-                      activeTab === "pets"
-                        ? "bg-sage text-soft-white"
-                        : "bg-terra text-soft-white"
-                    }`}
-                  >
+                  <div className="absolute top-3 right-3 bg-maroon text-warm-white px-3 py-1 rounded-full text-xs font-bold font-body">
                     {item.tag}
                   </div>
                 )}
               </div>
               <div className="p-5">
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-display font-bold text-bark text-lg">
-                    {item.name}
-                  </h3>
-                  <span className="font-body font-bold text-terra text-lg">
-                    {item.price}
-                  </span>
+                  <h3 className="font-display font-bold text-espresso text-lg">{item.name}</h3>
+                  <span className="font-body font-bold text-maroon text-lg">{item.price}</span>
                 </div>
-                <p className="font-body text-bark/50 text-sm">
-                  {item.desc}
-                </p>
+                <p className="font-body text-espresso/45 text-sm">{item.desc}</p>
               </div>
             </motion.div>
           ))}
         </motion.div>
 
-        {/* CTA */}
-        <div className="text-center mt-10">
+        {/* CTA Row */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
           <a
-            href="https://www.zomato.com/pune/the-pet-cafe-pune-koregaon-park"
+            href="https://www.zomato.com/pune/cafe-ibrahim-viman-nagar"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-body font-bold text-terra hover:text-terra-dark transition-colors group"
+            className="inline-flex items-center gap-2 font-body font-bold text-maroon hover:text-maroon-dark transition-colors group"
           >
             View Full Menu on Zomato
-            <ArrowRight
-              size={16}
-              className="group-hover:translate-x-1 transition-transform"
-            />
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+          </a>
+          <span className="hidden sm:block text-espresso/20">|</span>
+          <a
+            href="https://www.swiggy.com/city/pune/cafe-ibrahim-viman-nagar-rest989024"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-body font-bold text-teal hover:text-teal-dark transition-colors group"
+          >
+            Order on Swiggy
+            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
       </div>
@@ -708,180 +757,80 @@ function MenuSection() {
   );
 }
 
-/* ─── Services Section ─── */
-function Services() {
-  const services = [
-    {
-      icon: Coffee,
-      title: "Cafe",
-      desc: "Artisan coffee, gourmet sandwiches, pasta, pizza & more. Vegan options available.",
-      img: "/images/petcafe/rooftop.png",
-      color: "terra",
-    },
-    {
-      icon: HomeIcon,
-      title: "Boarding",
-      desc: "Safe, comfortable overnight stays for your pets while you're away. Cared for like family.",
-      img: "/images/petcafe/pets.png",
-      color: "sage",
-    },
-    {
-      icon: Scissors,
-      title: "Grooming",
-      desc: "Professional pet grooming with gentle hands. Bath, haircut, nail trim & spa treatments.",
-      img: "/images/petcafe/grooming.png",
-      color: "terra",
-    },
-    {
-      icon: ShoppingBag,
-      title: "Pet Store",
-      desc: "Premium pet food, toys, accessories & treats. Everything your furry friend needs.",
-      img: "/images/petcafe/petstore.png",
-      color: "sage",
-    },
-  ];
-
+/* ─── Late Night Section ─── */
+function LateNight() {
   return (
-    <RevealSection
-      id="services"
-      className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 section-gradient-sage relative"
-    >
-      <div className="paw-pattern absolute inset-0 pointer-events-none" />
-      <div className="max-w-7xl mx-auto relative">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="section-separator" />
-            <span className="font-body text-sm font-bold text-sage-dark tracking-[0.15em] uppercase">
-              What We Offer
-            </span>
-            <div className="section-separator" />
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-bark mb-4">
-            More Than Just a{" "}
-            <span className="text-sage-dark">Cafe</span>
-          </h2>
-          <p className="font-body text-bark/60 text-lg max-w-2xl mx-auto">
-            From your morning coffee to your pet&apos;s spa day — we&apos;re your
-            one-stop destination for everything pet and people.
-          </p>
-        </div>
-
-        {/* Services Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 group"
-            >
-              <div className="relative h-44 overflow-hidden">
-                <img
-                  src={service.img}
-                  alt={service.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-bark/40 to-transparent" />
-                <div
-                  className={`absolute bottom-3 left-3 p-2 rounded-xl ${
-                    service.color === "terra" ? "bg-terra" : "bg-sage"
-                  }`}
-                >
-                  <service.icon size={20} className="text-soft-white" />
-                </div>
-              </div>
-              <div className="p-5">
-                <h3 className="font-display font-bold text-bark text-xl mb-2">
-                  {service.title}
-                </h3>
-                <p className="font-body text-bark/55 text-sm leading-relaxed">
-                  {service.desc}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </RevealSection>
-  );
-}
-
-/* ─── Adoption Section ─── */
-function Adoption() {
-  return (
-    <RevealSection
-      id="adopt"
-      className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
-    >
-      {/* Background */}
-      <div className="absolute inset-0 bg-bark" />
+    <RevealSection id="latenight" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Dark Background */}
+      <div className="absolute inset-0 bg-espresso" />
       <div
-        className="absolute inset-0 opacity-20 bg-cover bg-center"
-        style={{ backgroundImage: "url('/images/petcafe/adoption.png')" }}
+        className="absolute inset-0 opacity-25 bg-cover bg-center"
+        style={{ backgroundImage: "url('/images/ibrahim/late-night.png')" }}
       />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left: Counter & Message */}
+          {/* Left: Content */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-[2px] bg-paw-gold" />
-              <span className="font-body text-sm font-bold text-paw-gold tracking-[0.15em] uppercase">
-                Adopt, Love, Repeat
+              <div className="w-12 h-[2px] bg-gold" />
+              <span className="font-body text-sm font-bold text-gold tracking-[0.15em] uppercase">
+                Late Night Legend
               </span>
             </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-soft-white mb-6 leading-tight">
-              Every Adoption
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-warm-white mb-6 leading-tight">
+              Cravings Don&apos;t
               <br />
-              <span className="text-coral-light">Saves Two Lives</span>
+              <span className="text-gold neon-pulse">Keep Hours</span>
             </h2>
-            <p className="font-body text-soft-white/70 text-lg leading-relaxed mb-8">
-              The one who gets a home, and the one who finds a reason to
-              keep going. At The Pet Cafe, every rescue has a story, and
-              every adoption writes a new beginning.
+            <p className="font-body text-warm-white/65 text-lg leading-relaxed mb-8">
+              When the rest of Pune goes to sleep, Cafe Ibrahim lights up.
+              Whether it&apos;s a post-shift meal, a midnight shawarma run, or
+              a 3 AM chai with friends — we&apos;re always here. No closing
+              time. No last order. Just good food, always.
             </p>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-3 gap-4 mb-8">
+            {/* Features */}
+            <div className="grid grid-cols-2 gap-4 mb-8">
               {[
-                { value: 783, suffix: "+", label: "Adoptions", icon: Heart },
-                { value: 100, suffix: "%", label: "Rescue", icon: Shield },
-                { value: 0, prefix: "₹", suffix: "", label: "Adoption Fee", icon: Sparkles },
-              ].map((stat, i) => (
+                {
+                  icon: Moon,
+                  label: "Open 24/7",
+                  desc: "No closing time, ever",
+                },
+                {
+                  icon: Flame,
+                  label: "Fresh at 3 AM",
+                  desc: "Hot food, any hour",
+                },
+                {
+                  icon: Users,
+                  label: "Night Owls Welcome",
+                  desc: "Your late-night spot",
+                },
+                {
+                  icon: Bike,
+                  label: "Late Night Delivery",
+                  desc: "Via Swiggy & Zomato",
+                },
+              ].map((item, i) => (
                 <div
                   key={i}
-                  className="bg-soft-white/10 backdrop-blur-sm rounded-2xl p-4 text-center border border-soft-white/10"
+                  className="bg-warm-white/8 backdrop-blur-sm rounded-2xl p-4 border border-warm-white/8"
                 >
-                  <stat.icon
-                    size={20}
-                    className="text-coral-light mx-auto mb-2"
-                  />
-                  <div className="font-display text-2xl sm:text-3xl font-bold text-paw-gold">
-                    {stat.prefix}
-                    <AnimatedCounter
-                      target={stat.value}
-                      suffix={stat.suffix}
-                    />
-                  </div>
-                  <div className="font-body text-xs text-soft-white/50 mt-1">
-                    {stat.label}
-                  </div>
+                  <item.icon size={20} className="text-gold mb-2" />
+                  <div className="font-body font-bold text-warm-white text-sm">{item.label}</div>
+                  <div className="font-body text-xs text-warm-white/40 mt-0.5">{item.desc}</div>
                 </div>
               ))}
             </div>
 
             <a
-              href="https://www.instagram.com/thepetcafepune/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-coral hover:bg-coral-light text-bark font-bold px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl"
+              href="tel:8551061614"
+              className="inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-espresso font-bold px-6 py-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl font-body"
             >
-              <Instagram size={18} />
-              See Adoptions on Instagram
+              <Phone size={18} />
+              Call Now — We&apos;re Open
             </a>
           </div>
 
@@ -893,18 +842,21 @@ function Adoption() {
               className="rounded-3xl overflow-hidden shadow-2xl"
             >
               <img
-                src="/images/petcafe/adoption.png"
-                alt="Happy adoption at The Pet Cafe Pune"
+                src="/images/ibrahim/late-night.png"
+                alt="Cafe Ibrahim Late Night"
                 className="w-full h-[400px] sm:h-[500px] object-cover"
               />
             </motion.div>
-            {/* Heart Beat Badge */}
+            {/* 24H Badge */}
             <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="absolute -bottom-4 -left-4 bg-coral rounded-2xl p-4 shadow-xl"
+              animate={{ scale: [1, 1.08, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="absolute -bottom-4 -left-4 bg-gold rounded-2xl px-5 py-4 shadow-xl"
             >
-              <Heart size={32} className="text-soft-white fill-soft-white" />
+              <div className="font-display text-3xl font-bold text-espresso">24</div>
+              <div className="font-body text-xs font-bold text-espresso/60 uppercase tracking-wider">
+                Hours
+              </div>
             </motion.div>
           </div>
         </div>
@@ -916,28 +868,25 @@ function Adoption() {
 /* ─── Gallery Section ─── */
 function Gallery() {
   const images = [
-    { src: "/images/petcafe/hero.png", alt: "The Pet Cafe Interior", span: "col-span-2 row-span-2" },
-    { src: "/images/petcafe/pets.png", alt: "Pets at the cafe", span: "" },
-    { src: "/images/petcafe/grooming.png", alt: "Pet grooming service", span: "" },
-    { src: "/images/petcafe/rooftop.png", alt: "Rooftop seating", span: "col-span-2" },
-    { src: "/images/petcafe/coffee.png", alt: "Artisan coffee", span: "" },
-    { src: "/images/petcafe/pupcakes.png", alt: "Pet pupcakes", span: "" },
+    { src: "/images/ibrahim/irani-chai.png", alt: "Irani Chai", span: "col-span-2 row-span-2" },
+    { src: "/images/ibrahim/shawarma.png", alt: "Chicken Shawarma", span: "" },
+    { src: "/images/ibrahim/kheema.png", alt: "Chicken Kheema", span: "" },
+    { src: "/images/ibrahim/biryani.png", alt: "Chicken Biryani", span: "col-span-2" },
+    { src: "/images/ibrahim/bun-maska.png", alt: "Bun Maska", span: "" },
+    { src: "/images/ibrahim/burger.png", alt: "Jumbo Burger", span: "" },
   ];
 
   return (
-    <RevealSection className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 section-gradient-peach relative">
-      <div className="max-w-7xl mx-auto">
+    <RevealSection className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 section-gradient-sand relative">
+      <div className="spice-pattern absolute inset-0 pointer-events-none" />
+      <div className="max-w-7xl mx-auto relative">
         <div className="text-center mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="section-separator" />
-            <span className="font-body text-sm font-bold text-terra tracking-[0.15em] uppercase">
-              Gallery
-            </span>
-            <div className="section-separator" />
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-bark mb-4">
-            Life at the{" "}
-            <span className="text-terra">Cafe</span>
+          <ArabesqueDivider />
+          <span className="font-body text-sm font-bold text-maroon tracking-[0.15em] uppercase">
+            Gallery
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-espresso mt-2">
+            A Taste Through <span className="text-maroon">Images</span>
           </h2>
         </div>
 
@@ -965,25 +914,111 @@ function Gallery() {
   );
 }
 
+/* ─── Reviews Section ─── */
+function Reviews() {
+  const reviews = [
+    {
+      text: "The best late night food! I am a chef and we don't have many options for dinner after our late shifts, and this place has become a go-to for the best meal.",
+      author: "Chef Review",
+      platform: "Zomato",
+      rating: 5,
+    },
+    {
+      text: "There are very few places open at night who offer food with great taste. All the dishes served at this cafe are up to the mark.",
+      author: "Regular Customer",
+      platform: "Zomato",
+      rating: 5,
+    },
+    {
+      text: "Irani chai is highly recommended. Chicken Peri Peri Shawarma and Classic Shawarma were absolutely loved. Great value for money!",
+      author: "Food Lover",
+      platform: "JustDial",
+      rating: 5,
+    },
+  ];
+
+  return (
+    <RevealSection className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 section-gradient-cream relative">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-14">
+          <ArabesqueDivider />
+          <span className="font-body text-sm font-bold text-maroon tracking-[0.15em] uppercase">
+            Reviews
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-espresso mt-2">
+            What People <span className="text-maroon">Say</span>
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {reviews.map((review, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+              className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-shadow duration-300 card-lift"
+            >
+              {/* Stars */}
+              <div className="flex gap-1 mb-4">
+                {Array.from({ length: review.rating }).map((_, j) => (
+                  <Star key={j} size={16} className="text-gold fill-gold" />
+                ))}
+              </div>
+              <p className="font-body text-espresso/70 text-sm leading-relaxed mb-4 italic">
+                &quot;{review.text}&quot;
+              </p>
+              <div className="flex items-center justify-between">
+                <span className="font-body font-bold text-espresso text-sm">{review.author}</span>
+                <span className="font-body text-xs text-espresso/40 bg-sand/50 px-3 py-1 rounded-full">
+                  {review.platform}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Overall Rating */}
+        <div className="text-center mt-10">
+          <div className="inline-flex items-center gap-6 bg-white rounded-2xl px-8 py-5 shadow-md">
+            <div>
+              <div className="font-display text-4xl font-bold text-maroon">4.6</div>
+              <div className="flex gap-0.5 mt-1">
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <Star key={s} size={14} className={s <= 4 ? "text-gold fill-gold" : "text-gold/40 fill-gold/40"} />
+                ))}
+              </div>
+            </div>
+            <div className="w-px h-12 bg-sand" />
+            <div className="text-left">
+              <div className="font-body font-bold text-espresso text-sm">599+ Reviews</div>
+              <div className="font-body text-xs text-espresso/40">on JustDial</div>
+            </div>
+            <div className="w-px h-12 bg-sand" />
+            <div className="text-left">
+              <div className="font-body font-bold text-espresso text-sm">4.2 Rating</div>
+              <div className="font-body text-xs text-espresso/40">on Zomato</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </RevealSection>
+  );
+}
+
 /* ─── Visit Us Section ─── */
 function VisitUs() {
   return (
-    <RevealSection
-      id="visit"
-      className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-soft-white relative"
-    >
+    <RevealSection id="visit" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 bg-warm-white relative">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="section-separator" />
-            <span className="font-body text-sm font-bold text-terra tracking-[0.15em] uppercase">
-              Find Us
-            </span>
-            <div className="section-separator" />
-          </div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-bark mb-4">
-            Come Say{" "}
-            <span className="text-terra">Hello</span>
+          <ArabesqueDivider />
+          <span className="font-body text-sm font-bold text-maroon tracking-[0.15em] uppercase">
+            Find Us
+          </span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-espresso mt-2 mb-4">
+            Come Visit <span className="text-maroon">Ibrahim</span>
           </h2>
         </div>
 
@@ -991,111 +1026,103 @@ function VisitUs() {
           {/* Map */}
           <div className="rounded-2xl overflow-hidden shadow-xl h-[400px] sm:h-[480px]">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.8!2d73.8929!3d18.5394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c10579ac6855%3A0xed386e8d901a54f4!2sThe%20Pet%20Cafe%20Pune!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.1!2d73.9041!3d18.5703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c14dbe56d905%3A0x37914994afe54ac5!2sCAFE%20IBRAHIM!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="The Pet Cafe Pune Location"
+              title="Cafe Ibrahim Location"
             />
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-6">
+          <div className="space-y-5">
             {/* Address */}
-            <div className="bg-warm-cream rounded-2xl p-6 flex gap-4 items-start">
-              <div className="p-3 rounded-xl bg-terra/10 shrink-0">
-                <MapPin size={22} className="text-terra" />
+            <div className="bg-cream rounded-2xl p-5 flex gap-4 items-start">
+              <div className="p-3 rounded-xl bg-maroon/10 shrink-0">
+                <MapPin size={20} className="text-maroon" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-bark text-lg mb-1">
-                  Address
-                </h3>
-                <p className="font-body text-bark/60 text-sm">
-                  Plot No. 122, 2, Lane 4, Suyojana Society,
+                <h3 className="font-display font-bold text-espresso text-lg mb-1">Address</h3>
+                <p className="font-body text-espresso/55 text-sm">
+                  Survey 230 B/2, Shop 2, Near Majjid,
                   <br />
-                  North Main Road, Koregaon Park, Pune 411001
+                  Sanjay Park, IAF Station, Viman Nagar, Pune
                 </p>
               </div>
             </div>
 
             {/* Timings */}
-            <div className="bg-warm-cream rounded-2xl p-6 flex gap-4 items-start">
-              <div className="p-3 rounded-xl bg-sage/10 shrink-0">
-                <Clock size={22} className="text-sage-dark" />
+            <div className="bg-cream rounded-2xl p-5 flex gap-4 items-start">
+              <div className="p-3 rounded-xl bg-gold/15 shrink-0">
+                <Clock size={20} className="text-gold-dark" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-bark text-lg mb-1">
-                  Timings
-                </h3>
-                <div className="font-body text-bark/60 text-sm space-y-1">
-                  <p>
-                    <span className="font-semibold text-bark/80">
-                      Mon – Fri:
-                    </span>{" "}
-                    12:00 PM – 9:00 PM
-                  </p>
-                  <p>
-                    <span className="font-semibold text-bark/80">
-                      Sat – Sun:
-                    </span>{" "}
-                    9:00 AM – 11:00 PM
+                <h3 className="font-display font-bold text-espresso text-lg mb-1">Timings</h3>
+                <div className="font-body text-espresso/55 text-sm">
+                  <p className="flex items-center gap-2">
+                    <span className="inline-block w-2 h-2 rounded-full bg-teal animate-pulse" />
+                    <span className="font-semibold text-espresso/75">Open 24 Hours</span> — We never close!
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Contact */}
-            <div className="bg-warm-cream rounded-2xl p-6 flex gap-4 items-start">
-              <div className="p-3 rounded-xl bg-coral/10 shrink-0">
-                <Phone size={22} className="text-coral" />
+            <div className="bg-cream rounded-2xl p-5 flex gap-4 items-start">
+              <div className="p-3 rounded-xl bg-teal/10 shrink-0">
+                <Phone size={20} className="text-teal" />
               </div>
               <div>
-                <h3 className="font-display font-bold text-bark text-lg mb-1">
-                  Contact
-                </h3>
+                <h3 className="font-display font-bold text-espresso text-lg mb-1">Contact</h3>
                 <a
-                  href="tel:9595224965"
-                  className="font-body text-terra font-semibold text-sm hover:text-terra-dark transition-colors"
+                  href="tel:8551061614"
+                  className="font-body text-maroon font-semibold text-sm hover:text-maroon-dark transition-colors"
                 >
-                  +91 95952 24965
+                  +91 85510 61614
                 </a>
-                <p className="font-body text-bark/50 text-xs mt-1">
-                  Call or WhatsApp for reservations
+                <p className="font-body text-espresso/40 text-xs mt-1">
+                  Call or WhatsApp for orders & reservations
                 </p>
               </div>
             </div>
 
-            {/* Social Links */}
-            <div className="bg-warm-cream rounded-2xl p-6">
-              <h3 className="font-display font-bold text-bark text-lg mb-4">
-                Follow Our Journey
+            {/* Social & Order Links */}
+            <div className="bg-cream rounded-2xl p-5">
+              <h3 className="font-display font-bold text-espresso text-lg mb-4">
+                Order Online & Follow
               </h3>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <a
-                  href="https://www.instagram.com/thepetcafepune/"
+                  href="https://www.instagram.com/cafeibrahim2020"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-5 py-2.5 rounded-full font-body font-bold text-sm hover:shadow-lg transition-shadow"
+                  className="flex items-center gap-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white px-4 py-2 rounded-full font-body font-bold text-xs hover:shadow-lg transition-shadow"
                 >
-                  <Instagram size={16} />
-                  @thepetcafepune
+                  <Instagram size={14} />
+                  @cafeibrahim2020
                 </a>
                 <a
-                  href="https://www.google.co.in/maps/place/The+Pet+Cafe+Pune/@18.539365,73.8950813"
+                  href="https://www.zomato.com/pune/cafe-ibrahim-viman-nagar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 bg-bark text-soft-white px-5 py-2.5 rounded-full font-body font-bold text-sm hover:shadow-lg transition-shadow"
+                  className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full font-body font-bold text-xs hover:shadow-lg transition-shadow"
                 >
-                  <Star size={16} className="text-paw-gold fill-paw-gold" />
-                  Google Reviews
+                  <Utensils size={14} />
+                  Zomato
+                </a>
+                <a
+                  href="https://www.swiggy.com/city/pune/cafe-ibrahim-viman-nagar-rest989024"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-orange-500 text-white px-4 py-2 rounded-full font-body font-bold text-xs hover:shadow-lg transition-shadow"
+                >
+                  <Bike size={14} />
+                  Swiggy
                 </a>
               </div>
-              <p className="font-body text-bark/40 text-xs mt-3">
-                12K+ followers on Instagram • 4.2★ on Google
-              </p>
             </div>
           </div>
         </div>
@@ -1107,43 +1134,43 @@ function VisitUs() {
 /* ─── Footer ─── */
 function Footer() {
   return (
-    <footer className="bg-bark text-soft-white/80 pt-16 pb-8 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-espresso text-warm-white/80 pt-16 pb-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <PawSVG size={24} className="text-paw-gold" />
-              <span className="font-display text-xl font-bold text-soft-white">
-                The Pet Cafe
-              </span>
+            <div className="flex items-center gap-2.5 mb-4">
+              <Coffee size={22} className="text-gold" />
+              <div>
+                <span className="font-display text-xl font-bold text-warm-white">Cafe Ibrahim</span>
+              </div>
             </div>
-            <p className="font-body text-sm text-soft-white/50 leading-relaxed mb-4">
-              A pet cafe that&apos;s human friendly. Cage-free, leash-free,
-              and full of love in the heart of Koregaon Park, Pune.
+            <p className="font-body text-sm text-warm-white/40 leading-relaxed mb-4">
+              Authentic Irani cafe in Viman Nagar, Pune. Open 24 hours —
+              because cravings don&apos;t keep hours.
             </p>
-            <p className="font-body text-xs text-soft-white/30">
-              Founded by Devesh Baheti
-            </p>
+            <div className="inline-flex items-center gap-2 bg-gold/15 rounded-full px-4 py-1.5">
+              <Moon size={12} className="text-gold" />
+              <span className="font-body text-xs font-bold text-gold">Open 24 Hours</span>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display font-bold text-soft-white text-sm mb-4 uppercase tracking-wider">
+            <h4 className="font-display font-bold text-warm-white text-sm mb-4 uppercase tracking-wider">
               Quick Links
             </h4>
             <ul className="space-y-2">
               {[
                 { label: "Our Story", href: "#story" },
                 { label: "Menu", href: "#menu" },
-                { label: "Services", href: "#services" },
-                { label: "Adopt", href: "#adopt" },
+                { label: "Late Night", href: "#latenight" },
                 { label: "Visit Us", href: "#visit" },
               ].map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="font-body text-sm text-soft-white/50 hover:text-paw-gold transition-colors"
+                    className="font-body text-sm text-warm-white/40 hover:text-gold transition-colors"
                   >
                     {link.label}
                   </a>
@@ -1152,24 +1179,21 @@ function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
+          {/* Must Try */}
           <div>
-            <h4 className="font-display font-bold text-soft-white text-sm mb-4 uppercase tracking-wider">
-              Services
+            <h4 className="font-display font-bold text-warm-white text-sm mb-4 uppercase tracking-wider">
+              Must Try
             </h4>
             <ul className="space-y-2">
               {[
-                "Cafe & Restaurant",
-                "Pet Boarding",
-                "Pet Grooming",
-                "Pet Store",
-                "Dog Adoption",
-              ].map((service) => (
-                <li
-                  key={service}
-                  className="font-body text-sm text-soft-white/50"
-                >
-                  {service}
+                "Irani Chai",
+                "Chicken Shawarma",
+                "Bun Maska Jam",
+                "Chicken Kheema",
+                "Chicken Biryani",
+              ].map((dish) => (
+                <li key={dish} className="font-body text-sm text-warm-white/40">
+                  {dish}
                 </li>
               ))}
             </ul>
@@ -1177,45 +1201,45 @@ function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-bold text-soft-white text-sm mb-4 uppercase tracking-wider">
+            <h4 className="font-display font-bold text-warm-white text-sm mb-4 uppercase tracking-wider">
               Get in Touch
             </h4>
             <div className="space-y-3">
               <a
-                href="tel:9595224965"
-                className="flex items-center gap-2 font-body text-sm text-soft-white/50 hover:text-paw-gold transition-colors"
+                href="tel:8551061614"
+                className="flex items-center gap-2 font-body text-sm text-warm-white/40 hover:text-gold transition-colors"
               >
                 <Phone size={14} />
-                +91 95952 24965
+                +91 85510 61614
               </a>
               <a
-                href="https://www.instagram.com/thepetcafepune/"
+                href="https://www.instagram.com/cafeibrahim2020"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 font-body text-sm text-soft-white/50 hover:text-paw-gold transition-colors"
+                className="flex items-center gap-2 font-body text-sm text-warm-white/40 hover:text-gold transition-colors"
               >
                 <Instagram size={14} />
-                @thepetcafepune
+                @cafeibrahim2020
               </a>
-              <div className="flex items-start gap-2 font-body text-sm text-soft-white/50">
+              <div className="flex items-start gap-2 font-body text-sm text-warm-white/40">
                 <MapPin size={14} className="shrink-0 mt-0.5" />
-                Plot 122, Lane 4, North Main Rd, KP, Pune
+                Sanjay Park, Viman Nagar, Pune
               </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-soft-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-body text-xs text-soft-white/30">
-            © {new Date().getFullYear()} The Pet Cafe Pune. All rights reserved.
+        <div className="border-t border-warm-white/8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="font-body text-xs text-warm-white/25">
+            © {new Date().getFullYear()} Cafe Ibrahim. All rights reserved.
           </p>
           <div className="flex items-center gap-2">
-            <PawSVG size={14} className="text-paw-gold/30" />
-            <span className="font-body text-xs text-soft-white/30">
-              Adopt, Love, Repeat
+            <Coffee size={12} className="text-gold/25" />
+            <span className="font-body text-xs text-warm-white/25">
+              Open 24 Hours • Viman Nagar, Pune
             </span>
-            <PawSVG size={14} className="text-paw-gold/30" />
+            <Coffee size={12} className="text-gold/25" />
           </div>
         </div>
       </div>
@@ -1224,17 +1248,17 @@ function Footer() {
 }
 
 /* ─── Main Page ─── */
-export default function ThePetCafePage() {
+export default function CafeIbrahimPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-warm-cream">
+    <div className="min-h-screen flex flex-col bg-cream">
       <Navbar />
       <main className="flex-1">
         <Hero />
         <OurStory />
         <MenuSection />
-        <Services />
-        <Adoption />
+        <LateNight />
         <Gallery />
+        <Reviews />
         <VisitUs />
       </main>
       <Footer />

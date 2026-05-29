@@ -1,51 +1,53 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Nunito } from "next/font/google";
+import { Amiri, Outfit } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const amiri = Amiri({
+  variable: "--font-amiri",
+  weight: ["400", "700"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "The Pet Cafe Pune | A Pet Cafe That's Human Friendly",
+  title: "Cafe Ibrahim | Authentic Irani Cafe in Viman Nagar, Pune — Open 24 Hours",
   description:
-    "Pune's first cage-free, leash-free pet cafe in Koregaon Park. Enjoy artisan coffee, gourmet food & a special pet menu while your furry friends roam free. Cafe | Boarding | Grooming | Pet Store | 783+ Adoptions.",
+    "Cafe Ibrahim — Pune's beloved 24-hour Irani cafe in Viman Nagar. Famous for Irani Chai, Chicken Shawarma, Bun Maska, Kheema Pav, Biryani & more. Late night cravings? We're always open.",
   keywords: [
-    "The Pet Cafe Pune",
-    "Pet Cafe Pune",
-    "Dog Cafe Pune",
-    "Pet Friendly Cafe Pune",
-    "Koregaon Park Cafe",
-    "Pet Boarding Pune",
-    "Pet Grooming Pune",
-    "Dog Adoption Pune",
-    "Cage Free Cafe",
-    "Pet Menu Pune",
+    "Cafe Ibrahim",
+    "Cafe Ibrahim Pune",
+    "Irani Cafe Pune",
+    "Viman Nagar Cafe",
+    "24 Hour Cafe Pune",
+    "Late Night Food Pune",
+    "Shawarma Pune",
+    "Irani Chai Pune",
+    "Bun Maska Pune",
+    "Kheema Pav Pune",
+    "Late Night Cafe Viman Nagar",
   ],
-  authors: [{ name: "The Pet Cafe Pune" }],
+  authors: [{ name: "Cafe Ibrahim" }],
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "The Pet Cafe Pune | A Pet Cafe That's Human Friendly",
+    title: "Cafe Ibrahim | Authentic Irani Cafe — Open 24 Hours",
     description:
-      "Pune's first cage-free, leash-free pet cafe. 783+ adoptions. Cafe, Boarding, Grooming & Pet Store.",
+      "Pune's beloved 24-hour Irani cafe. Famous for Irani Chai, Shawarma, Bun Maska & more.",
     type: "website",
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Pet Cafe Pune | A Pet Cafe That's Human Friendly",
+    title: "Cafe Ibrahim | Authentic Irani Cafe — Open 24 Hours",
     description:
-      "Pune's first cage-free, leash-free pet cafe. 783+ adoptions. Cafe, Boarding, Grooming & Pet Store.",
+      "Pune's beloved 24-hour Irani cafe. Famous for Irani Chai, Shawarma, Bun Maska & more.",
   },
 };
 
@@ -57,7 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${nunito.variable} antialiased bg-background text-foreground`}
+        className={`${amiri.variable} ${outfit.variable} antialiased bg-background text-foreground`}
       >
         {children}
       </body>
